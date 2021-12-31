@@ -1,0 +1,30 @@
+.characters {
+    .characters-header {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+    .input-search {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .select-search {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .pagination {
+        justify-content: center;
+    }
+    .g-4 {
+        margin: 1em 20px;
+        margin-bottom: 20px;
+        .text-center {
+            width: auto;
+            margin-right: 10px;
+            .image {
+                max-width: 360px;
+                margin: 0 auto;
+            }
+        }
+    }
+}
