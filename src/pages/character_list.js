@@ -48,7 +48,6 @@ export default function Character_List() {
         fetch(url + "?page=" + currentPage + "&name=" + search + "&status=" + status + "&gender=" + gender).then(res => {
             if (res.status >= 400 && res.status < 600) {
                 setCurrentPage(1)
-                console.log("error")
             }
             return res.json()
         }).then((result) => {
