@@ -25,8 +25,8 @@ export default function Character_Overview() {
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    if (character === null || episodes.length === 0) {
+    
+    if (character === null) { //character fetch is not loaded
         return (
             <main className="overview">
                 <section>

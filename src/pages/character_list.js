@@ -5,16 +5,49 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import CHARACTER_LIST_PAGINATION from '../components/character_list_pagination'
 
+const SearchandFilter = ({ setSearch, setStatus, setGender }) => {
+    return (
+        <div>
+            <div className='input-search'>
+                Search Character: <input type="text" maxLength="8" size="20" onChange={(e) => { setSearch(e.target.value) }} />
+            </div>
+            <div className="nested-select">
+                <div className='select-status'>
+                    <label>Character Status - </label>
+                    <select className="select">
+                        <option value="None" onClick={() => { setStatus('') }}>None</option>
+                        <option value="alive" onClick={() => { setStatus('alive') }}>Alive</option>
+                        <option value="dead" onClick={() => { setStatus('dead') }}>Dead</option>
+                        <option value="unknown" onClick={() => { setStatus('unknown') }}>Unknown</option>
+                    </select>
+                </div>
+                <div className='select-gender'>
+                    <label>Gender - </label>
+                    <select className="select">
+                        <option value="None" onClick={() => { setGender('') }}>None</option>
+                        <option value="male" onClick={() => { setGender('male') }}>Male</option>
+                        <option value="female" onClick={() => { setGender('female') }}>Female</option>
+                        <option value="genderless" onClick={() => { setGender('genderless') }}>Genderless</option>
+                        <option value="unknown" onClick={() => { setGender('unknown') }}>Unknown</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 export default function Character_List() {
     const [url, setUrl] = useState("https://rickandmortyapi.com/api/character")
     const [search, setSearch] = useState('')
     const [status, setStatus] = useState('')
+    const [gender, setGender] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [allCharacters, setAllAcharacters] = useState(null)
 
     useEffect(() => {
-        fetch(url + "?page=" + currentPage + "&name=" + search + "&status=" + status).then(res => {
+        fetch(url + "?page=" + currentPage + "&name=" + search + "&status=" + status + "&gender=" + gender).then(res => {
             if (res.status >= 400 && res.status < 600) {
+                setCurrentPage(1)
                 console.log("error")
             }
             return res.json()
@@ -22,7 +55,7 @@ export default function Character_List() {
             setAllAcharacters(result)
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [url, currentPage, search, status])
+    }, [url, currentPage, search, status, gender])
 
     if (allCharacters === null) {
         return (
@@ -40,9 +73,7 @@ export default function Character_List() {
             <main className="characters">
                 <section>
                     <h4 className="characters-header">Characters</h4>
-                    <div className='input-search'>
-                        Search Character: <input type="text" maxLength="8" size="20" onChange={(e) => {setSearch(e.target.value)}}/>
-                    </div>
+                    <SearchandFilter setSearch={setSearch} setStatus={setStatus} setGender={setGender}/>
                     <p style={{ textAlign: 'center' }}>No Results Found</p>
                 </section>
             </main>
@@ -53,26 +84,15 @@ export default function Character_List() {
         <main className="characters">
             <section>
                 <h4 className="characters-header">Characters</h4>
-                <div className='input-search'>
-                    Search Character: <input type="text" maxLength="8" size="20" onChange={(e) => {setSearch(e.target.value)}}/>
-                </div>
-                <div className='select-search'>
-                    <label>Character Status: </label>
-                    <select className="select">
-                        <option value="None" onClick={() => {setStatus('')}}>None</option>
-                        <option value="alive" onClick={() => {setStatus('alive')}}>Alive</option>
-                        <option value="dead" onClick={() => {setStatus('dead')}}>Dead</option>
-                        <option value="unknown" onClick={() => {setStatus('unknown')}}>Unknown</option>
-                    </select>
-                </div>
-                <CHARACTER_LIST_PAGINATION currentPage={currentPage} setCurrentPage={setCurrentPage} numofPages={allCharacters.info.pages} setUrl={setUrl} next={allCharacters.info.next} prev={allCharacters.info.prev}/>
+                <SearchandFilter setSearch={setSearch} setStatus={setStatus} setGender={setGender}/>
+                <CHARACTER_LIST_PAGINATION currentPage={currentPage} setCurrentPage={setCurrentPage} numofPages={allCharacters.info.pages} setUrl={setUrl} next={allCharacters.info.next} prev={allCharacters.info.prev} />
                 <Row xs={1} md={5} className="g-4">
                     {
                         allCharacters.results.map(item => {
-                            return(
+                            return (
                                 <Col key={item.id}>
                                     <Card className="text-center">
-                                        <Card.Header><Link to={"/overview/" + item.id}>{item.name}</Link></Card.Header>
+                                        <Card.Header><Link to={"/character/" + item.id}>{item.name}</Link></Card.Header>
                                         <Card.Img src={item.image} className="image" />
                                         <Card.Body>
                                             <Card.Text>
@@ -81,7 +101,7 @@ export default function Character_List() {
                                             <Card.Text>
                                                 Species - {item.species}
                                             </Card.Text>
-                                            {(item.type !== "") ? <Card.Text> Type - {item.type} </Card.Text> : null}
+                                            {(item.type !== "") ? <Card.Text> Subspecies - {item.type} </Card.Text> : <Card.Text> Subspecies - None </Card.Text>}
                                             <Card.Text>
                                                 Gender - {item.gender}
                                             </Card.Text>
@@ -94,12 +114,12 @@ export default function Character_List() {
                                         </Card.Body>
                                     </Card>
                                 </Col>
-                                
+
                             )
                         })
                     }
                 </Row>
-                <CHARACTER_LIST_PAGINATION currentPage={currentPage} setCurrentPage={setCurrentPage} numofPages={allCharacters.info.pages} setUrl={setUrl} next={allCharacters.info.next} prev={allCharacters.info.prev}/>
+                <CHARACTER_LIST_PAGINATION currentPage={currentPage} setCurrentPage={setCurrentPage} numofPages={allCharacters.info.pages} setUrl={setUrl} next={allCharacters.info.next} prev={allCharacters.info.prev} />
             </section>
         </main>
     )

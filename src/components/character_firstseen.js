@@ -32,9 +32,15 @@ const CHARACTER_FIRSTSEEN = ({ id }) => {
             <Card.Body style={{ display: 'flex', padding: '0' }}>
                 <Card.Img src={character.image} style={{ width: '50%' }} />
                 <Card.Body style={{ width: '50%' }}>
-                    <Card.Title style={{ fontSize: '1rem' }}><Link to={"/overview/" + character.id}>{character.name}</Link></Card.Title>
+                    <Card.Title style={{ fontSize: '1rem' }}><Link to={"/character/" + character.id}>{character.name}</Link></Card.Title>
                     <Card.Text>
-                        Status - {character.status} / Species - {character.species}
+                        Status - {character.status}
+                    </Card.Text>
+                    <Card.Text>
+                        Species - {character.species} 
+                    </Card.Text>
+                    <Card.Text>
+                        {(character.type !== "") ? <Card.Text> Subspecies - {character.type} </Card.Text> : <Card.Text> Subspecies - None </Card.Text>}
                     </Card.Text>
                     <Card.Text>
                         Last Known Location - <br /> {character.location.name}

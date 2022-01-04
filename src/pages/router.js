@@ -4,6 +4,7 @@ import {Route, Routes} from 'react-router-dom'
 import Home from './home'
 import Characters from './character_list'
 import CHARACTER_OVERVIEW from './character_overview'
+import Location from './location_list'
 import NotFound from './notfound'
 
 //This page serves Single Pages
@@ -11,8 +12,9 @@ import NotFound from './notfound'
 export default function Router() {
     return (
         <Routes>
-            <Route path="/overview/:id" element={<CHARACTER_OVERVIEW />}></Route>
+            <Route path="/character/:id" element={<CHARACTER_OVERVIEW />}></Route>
             <Route exact path="/characters" element={<Characters />}></Route>
+            <Route exact path="/locations" element={<Location />}></Route>
             <Route exact path="/" element={<Home />}></Route>
             <Route path='/*' element={<NotFound />} > </Route>
         </Routes>

@@ -11,7 +11,6 @@ export default function Home() {
             }
               return res.json()
         }).then((result) => {
-            console.log(result)
             setTotalCharacters(result.info.count)
         })
     }, [])
