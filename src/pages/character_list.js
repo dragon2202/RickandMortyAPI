@@ -5,15 +5,15 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import CHARACTER_LIST_PAGINATION from '../components/character_list_pagination'
 
-const SearchandFilter = ({ setSearch, setStatus, setGender }) => {
+const SearchandFilter = ({ setSearch, setStatus, setGender, setSpecies, setType }) => {
     return (
         <div>
             <div className='input-search'>
-                Search Character: <input type="text" maxLength="8" size="20" onChange={(e) => { setSearch(e.target.value) }} />
+                Name: <input type="text" maxLength="8" size="20" onChange={(e) => { setSearch(e.target.value) }} />
             </div>
             <div className="nested-select">
                 <div className='select-status'>
-                    <label>Character Status - </label>
+                    <label>Status: </label>
                     <select className="select">
                         <option value="None" onClick={() => { setStatus('') }}>None</option>
                         <option value="alive" onClick={() => { setStatus('alive') }}>Alive</option>
@@ -22,7 +22,7 @@ const SearchandFilter = ({ setSearch, setStatus, setGender }) => {
                     </select>
                 </div>
                 <div className='select-gender'>
-                    <label>Gender - </label>
+                    <label>Gender: </label>
                     <select className="select">
                         <option value="None" onClick={() => { setGender('') }}>None</option>
                         <option value="male" onClick={() => { setGender('male') }}>Male</option>
@@ -31,6 +31,12 @@ const SearchandFilter = ({ setSearch, setStatus, setGender }) => {
                         <option value="unknown" onClick={() => { setGender('unknown') }}>Unknown</option>
                     </select>
                 </div>
+            </div>
+            <div className='species-search'>
+                Species: <input type="text" maxLength="8" size="20" onChange={(e) => { setSpecies(e.target.value) }} />
+            </div>
+            <div className='type-search'>
+                Subspecies: <input type="text" maxLength="8" size="20" onChange={(e) => { setType(e.target.value) }} />
             </div>
         </div>
     )
@@ -41,11 +47,13 @@ export default function Character_List() {
     const [search, setSearch] = useState('')
     const [status, setStatus] = useState('')
     const [gender, setGender] = useState('')
+    const [species, setSpecies] = useState('')
+    const [type, setType] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [allCharacters, setAllAcharacters] = useState(null)
 
     useEffect(() => {
-        fetch(url + "?page=" + currentPage + "&name=" + search + "&status=" + status + "&gender=" + gender).then(res => {
+        fetch(url + "?page=" + currentPage + "&name=" + search + "&status=" + status + "&gender=" + gender + "&species=" + species + "&type=" + type).then(res => {
             if (res.status >= 400 && res.status < 600) {
                 setCurrentPage(1)
             }
@@ -54,7 +62,7 @@ export default function Character_List() {
             setAllAcharacters(result)
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [url, currentPage, search, status, gender])
+    }, [url, currentPage, search, status, gender, species, type])
 
     if (allCharacters === null) {
         return (
@@ -72,7 +80,7 @@ export default function Character_List() {
             <main className="characters">
                 <section>
                     <h4 className="characters-header">Characters</h4>
-                    <SearchandFilter setSearch={setSearch} setStatus={setStatus} setGender={setGender}/>
+                    <SearchandFilter setSearch={setSearch} setStatus={setStatus} setGender={setGender} setSpecies={setSpecies} setType={setType}/>
                     <p style={{ textAlign: 'center' }}>No Results Found</p>
                 </section>
             </main>
@@ -83,9 +91,9 @@ export default function Character_List() {
         <main className="characters">
             <section>
                 <h4 className="characters-header">Characters</h4>
-                <SearchandFilter setSearch={setSearch} setStatus={setStatus} setGender={setGender}/>
+                <SearchandFilter setSearch={setSearch} setStatus={setStatus} setGender={setGender} setSpecies={setSpecies} setType={setType}/>
                 <CHARACTER_LIST_PAGINATION currentPage={currentPage} setCurrentPage={setCurrentPage} numofPages={allCharacters.info.pages} setUrl={setUrl} next={allCharacters.info.next} prev={allCharacters.info.prev} />
-                <Row xs={1} md={5} className="g-4">
+                <Row xl={5} lg={5} md={3} sm={2} xs={1} className="g-4">
                     {
                         allCharacters.results.map(item => {
                             return (

@@ -7,13 +7,13 @@ const SearchandFilter = ({ setSearch, setType, setDimension }) => {
     return(
         <div>
             <div className='name-search'>
-                Search Character: <input type="text" maxLength="8" size="20" onChange={(e) => { setSearch(e.target.value) }} />
+                Name: <input type="text" maxLength="8" size="20" onChange={(e) => { setSearch(e.target.value) }} />
             </div>
             <div className='type-search'>
-                Search Type: <input type="text" maxLength="8" size="20" onChange={(e) => { setType(e.target.value) }} />
+                Type: <input type="text" maxLength="8" size="20" onChange={(e) => { setType(e.target.value) }} />
             </div>
             <div className='dimension-search'>
-                Search Dimension: <input type="text" maxLength="8" size="20" onChange={(e) => { setDimension(e.target.value) }} />
+                Dimension: <input type="text" maxLength="8" size="20" onChange={(e) => { setDimension(e.target.value) }} />
             </div>
         </div>
     )
