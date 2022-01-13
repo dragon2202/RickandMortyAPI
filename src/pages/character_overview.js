@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
+import { stringSplit } from '../components/stringSplit'
 
 export default function Character_Overview() {
     let { id } = useParams()
@@ -12,35 +13,48 @@ export default function Character_Overview() {
     useEffect(() => {
         fetch(url).then(res => {
             if (res.status >= 400 && res.status < 600) {
+                setCharacter(undefined)
                 throw new Error("Bad response from server");
-              }
-              return res.json()
+            } else {
+                return res.json()
+            }
         }).then(async (result) => {//fetches character
-            for (var i = 0; i < result.episode.length; i++) {
-                await fetch(result.episode[i]).then(res => res.json()).then((episodeResult) => {//fetches characters first spisode
+            setCharacter(result)
+            for (let i = 0; i < result.episode.length; i++) {
+                await fetch(result.episode[i]).then(res => res.json()).then((episodeResult) => {//fetches character's episodes
                     setEpisodes(episodes => [...episodes, episodeResult])
                 })
             }
-            setCharacter(result)
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     if (character === null) { //character fetch is not loaded
         return (
-            <main className="overview">
+            <main className="character_overview">
                 <section>
-                    <h4 className="overview-header">Character Overview</h4>
+                    <h4 className="character_overview-header">Character Overview</h4>
                     <p style={{ textAlign: 'center' }}>Loading...</p>
                 </section>
             </main>
         )
     }
 
+    if (character === undefined) { //character fetch is not loaded
+        return (
+            <main className="character_overview">
+                <section>
+                    <h4 className="character_overview-header">Character Overview</h4>
+                    <p style={{ textAlign: 'center' }}>Character Not Found</p>
+                </section>
+            </main>
+        )
+    }
+
     return (
-        <main className="overview">
+        <main className="character_overview">
             <section>
-                <h4 className="overview-header">Character Overview</h4>
+                <h4 className="character_overview-header">Character: {character.name}</h4>
                 <div className='nested-section'>
                     <Card className="text-center">
                         <Card.Header>{character.name}</Card.Header>
@@ -57,14 +71,14 @@ export default function Character_Overview() {
                                 Gender - {character.gender}
                             </Card.Text>
                             <Card.Text>
-                                Origin - {character.origin.name}
+                                Origin - {(character.origin.name === "unknown") ? character.origin.name : <Link to={"/location/" + stringSplit(character.origin.url)}>{character.origin.name}</Link>}
                             </Card.Text>
                             <Card.Text>
-                                Current Location (as of the most current episode) - {character.location.name}
+                                Current Location (as of the most current episode) - {(character.location.name === "unknown") ? character.location.name : <Link to={"/location/" + stringSplit(character.location.url)}>{character.location.name}</Link>}
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card className="episode-table">
+                    <Card className="episode-card">
                         <Card.Header style={{ textAlign: 'center' }}>All Episodes this character has appeared</Card.Header>
                         <Table className='table'>
                             <thead>

@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import CHARACTER_LIST_PAGINATION from '../components/character_list_pagination'
+import { stringSplit } from '../components/stringSplit'
 
 const SearchandFilter = ({ setSearch, setStatus, setGender, setSpecies, setType }) => {
     return (
@@ -113,10 +114,10 @@ export default function Character_List() {
                                                 Gender - {item.gender}
                                             </Card.Text>
                                             <Card.Text>
-                                                Origin - {item.origin.name}
+                                                Origin - {(item.origin.name === "unknown") ? item.origin.name : <Link to={"/location/" + stringSplit(item.origin.url)}>{item.origin.name}</Link>}
                                             </Card.Text>
                                             <Card.Text>
-                                                Current Location (as of the most current episode) - {item.location.name}
+                                                Current Location (as of the most current episode) - {(item.location.name === "unknown") ? item.location.name : <Link to={"/location/" + stringSplit(item.location.url)}>{item.location.name}</Link>}
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>

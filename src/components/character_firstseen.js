@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
+import { stringSplit } from './stringSplit'
 
 const Content = ({ id }) => {
     const [character, setCharacter] = useState(null)
@@ -43,7 +44,10 @@ const Content = ({ id }) => {
                         {(character.type !== "") ? <Card.Text> Subspecies - {character.type} </Card.Text> : <Card.Text> Subspecies - None </Card.Text>}
                     </Card.Text>
                     <Card.Text as="div">
-                        Last Known Location - <br /> {character.location.name}
+                        Origin - <br /> {(character.origin.name === "unknown") ? character.origin.name : <Link to={"/location/" + stringSplit(character.origin.url)}>{character.origin.name}</Link>}
+                    </Card.Text>
+                    <Card.Text as="div">
+                        Last Known Location - <br /> {(character.location.name === "unknown") ? character.location.name : <Link to={"/location/" + stringSplit(character.location.url)}>{character.location.name}</Link>}
                     </Card.Text>
                     {(character.type !== "") ? <Card.Text as="div"> Type - {character.type} </Card.Text> : null}
                     <Card.Text as="div">

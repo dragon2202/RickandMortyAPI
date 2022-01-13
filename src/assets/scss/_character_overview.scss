@@ -1,0 +1,50 @@
+.character_overview {
+    .character_overview-header {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+    .nested-section {
+        max-width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 auto;
+        .text-center {
+            width: 500px;
+            height: 100%;
+            margin-right: 10px;
+            .image {
+                margin-top: 20px;
+                max-width: 360px;
+                margin: 0 auto;
+            }
+        }
+        .episode-card {
+            width: 500px;
+            height: 100%;
+            margin-left: 10px;
+            margin-bottom: 20px;
+            .table {
+                margin-bottom: 0px;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+    .overview {
+        .nested-section {
+            flex-direction: column;
+            .text-center {
+                margin: 0 auto;
+                margin-bottom: 20px;
+            }
+            .episode-table {
+                margin: 0 auto;
+            }
+        }
+    }
+}

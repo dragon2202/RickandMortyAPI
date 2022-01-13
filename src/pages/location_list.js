@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
 import LOCATION_LIST_PAGINATION from './../components/location_list_pagination'
@@ -84,7 +85,7 @@ export default function Location_List() {
                                 locations.results.map(item => {
                                     return (
                                         <tr key={item.id}>
-                                            <td>{item.name}</td>
+                                            <td><Link to={"/location/" + item.id}>{item.name}</Link></td>
                                             <td>{item.type}</td>
                                             <td>{item.dimension}</td>
                                         </tr>
