@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom'
 import Table from 'react-bootstrap/Table'
 import Card from 'react-bootstrap/Card'
 
-export default function Location_Overview() {
+export default function Episode_Overview() {
     let { id } = useParams()
-    const [location, setLocation] = useState(null)
-    const [residents, setResidents] = useState([])
-    const url = 'https://rickandmortyapi.com/api/location/' + id
+    const [episode, setEpisode] = useState(null)
+    const [characters, setCharacters] = useState([])
+    const url = "https://rickandmortyapi.com/api/episode/" + id
 
     useEffect(() => {
         fetch(url).then(res => {
@@ -18,21 +18,21 @@ export default function Location_Overview() {
                 return res.json()
             }
         }).then(async result => {
-            setLocation(result)
-            for(let i = 0; i < result.residents.length; i++) {
-                await fetch(result.residents[i]).then(res => res.json()).then((residentResult) => {//fetches location's residents
-                    setResidents(residents => [...residents, residentResult])
+            setEpisode(result)
+            for(let i = 0; i < result.characters.length; i++) {
+                await fetch(result.characters[i]).then(res => res.json()).then((charactersResults) => {//fetches episodes characters
+                    setCharacters(characters => [...characters, charactersResults])
                 })
             }
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    if (location === null) {
+    if (episode === null) {
         return (
-            <main className="location_overview">
+            <main className="episode_overview">
                 <section>
-                    <h4 className="location_overview_header">Location Overview</h4>
+                    <h4 className="episode_overview_header">Episode Overview</h4>
                     <p style={{ textAlign: 'center' }}>Loading...</p>
                 </section>
             </main>
@@ -40,33 +40,31 @@ export default function Location_Overview() {
     }
 
     return (
-        <main className="location_overview">
+        <main className="episode_overview">
             <section>
-                <h4 className="location_overview_header">Location: {location.name}</h4>
+                <h4 className="episode_overview_header">Episode: {episode.name}</h4>
                 <div className="nested-section">
                     <Card className="text-center">
-                        <Card.Body>
-                            <Table className='table'>
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Dimension</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>{location.name}</td>
-                                        <td>{location.type}</td>
-                                        <td>{location.dimension}</td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                        </Card.Body>
+                        <Table className='table'>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Air Date</th>
+                                    <th>Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{episode.name}</td>
+                                    <td>{episode.air_date}</td>
+                                    <td>{episode.episode}</td>
+                                </tr>
+                            </tbody>
+                        </Table>
                     </Card>
 
-                    <Card className="residents-card">
-                        <Card.Header>Residents in {location.name}</Card.Header>
+                    <Card className="characters-card">
+                        <Card.Header>Characters in {episode.name}</Card.Header>
                         <Card.Body>
                             <Table className='table'>
                                 <thead>
@@ -82,7 +80,7 @@ export default function Location_Overview() {
                                 <tbody>
                                     {
                                         //Maps out all the residents the location has
-                                        residents.map((item) => {
+                                        characters.map((item) => {
                                             return (
                                                 <tr key={item.id}>
                                                     <td className="td-image"><img className="picture" src={item.image} alt="Not Found"/></td>
@@ -100,7 +98,6 @@ export default function Location_Overview() {
                         </Card.Body>
                     </Card>
                 </div>
-
             </section>
         </main>
     )

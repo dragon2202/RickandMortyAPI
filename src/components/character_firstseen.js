@@ -54,7 +54,7 @@ const Content = ({ id }) => {
                         Gender - {character.gender}
                     </Card.Text>
                     <Card.Text as="div">
-                        First Seen In - <br /> {firstSeen.name} - {firstSeen.episode}
+                        First Seen In - <br /> <Link to={"/episode/" + firstSeen.id}>{firstSeen.name}</Link> - {firstSeen.episode}
                     </Card.Text>
                 </Card.Body>
             </Card.Body>

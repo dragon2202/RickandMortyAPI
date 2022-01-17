@@ -15,6 +15,7 @@ export default function Navigation() {
                         <Nav.Link href='/'>Home</Nav.Link>
                         <Nav.Link href='/characters'>Characters</Nav.Link>
                         <Nav.Link href='/locations'>Locations</Nav.Link>
+                        <Nav.Link href='/episodes'>Episodes</Nav.Link>
                     </Nav>
                     <Nav>
                         <Nav.Link href='https://rickandmortyapi.com/'>Official Website for API</Nav.Link>

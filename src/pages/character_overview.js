@@ -94,7 +94,7 @@ export default function Character_Overview() {
                                     episodes.map(item => {
                                         return(
                                             <tr key={item.id}>
-                                                <td>{item.name}</td>
+                                                <td><Link to={"/episode/" + item.id}>{item.name}</Link></td>
                                                 <td>{item.air_date}</td>
                                                 <td>{item.episode}</td>
                                             </tr>

@@ -1,0 +1,87 @@
+.episode_overview {
+    .episode_overview_header {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+    .nested-section {
+        max-width: 100%;
+        box-sizing: border-box;
+        display: grid;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 auto;
+        padding-bottom: 20px;
+        row-gap: 12px;
+        .text-center {
+            width: 700px;
+            height: 100%;
+            .table {
+                margin-bottom: 0px;
+            }
+        }
+        .characters-card {
+            width: 700px;
+            height: 100%;
+            .table {
+                margin-bottom: 0px;
+                .picture{
+                    height: 100px;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    .episode_overview {
+        .nested-section {
+            .text-center {
+                width: 600px;
+            }
+            .characters-card {
+                width: 600px;
+                .table {
+                    .picture{
+                        height: 50px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .episode_overview {
+        .nested-section {
+            .text-center {
+                width: 500px;
+            }
+            .characters-card {
+                width: 500px;
+                .table {
+                    .th-image{
+                        display: none;
+                    }
+                    .td-image{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .episode_overview {
+        .nested-section {
+            .text-center {
+                width: 470px;
+            }
+            .characters-card {
+                width: 470px;
+            }
+        }
+    }
+}

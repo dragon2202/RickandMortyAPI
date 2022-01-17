@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
-import LOCATION_LIST_PAGINATION from './../components/location_list_pagination'
+import MinorPagination from '../components/minorpagination'
 
 const SearchandFilter = ({ setSearch, setType, setDimension }) => {
     return(
@@ -68,7 +68,7 @@ export default function Location_List() {
             <section>
                 <h4 className="locations-header">Locations</h4>
                 <SearchandFilter setSearch={setSearch} setType={setType} setDimension={setDimension}/>
-                <LOCATION_LIST_PAGINATION currentPage={currentPage} setCurrentPage={setCurrentPage} numofPages={locations.info.pages}/>
+                <MinorPagination currentPage={currentPage} setCurrentPage={setCurrentPage} numofPages={locations.info.pages}/>
                 <Card className="location-table">
                     <Card.Header style={{ textAlign: 'center' }}>All Locations in Rick and Morty</Card.Header>
                     <Table className='table'>
