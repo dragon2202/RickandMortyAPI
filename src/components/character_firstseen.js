@@ -29,10 +29,10 @@ const Content = ({ id }) => {
         )
     }
     return (
-        <Card style={{ width: '600px' }}>
-            <Card.Body className="left-body" style={{ display: 'flex', padding: '0' }}>
-                <Card.Img src={character.image} style={{ width: '50%' }} />
-                <Card.Body className="right-body" style={{ width: '50%' }}>
+        <Card className="content">
+            <Card.Body className="left-body">
+                <Card.Img src={character.image}/>
+                <Card.Body className="right-body">
                     <Card.Title style={{ fontSize: '1rem' }}><Link to={"/character/" + character.id}>{character.name}</Link></Card.Title>
                     <Card.Text as="div">
                         Status - {character.status}
