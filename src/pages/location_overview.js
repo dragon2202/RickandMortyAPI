@@ -74,9 +74,9 @@ export default function Location_Overview() {
                                         <th className="th-image">Image</th>
                                         <th>Name</th>
                                         <th>Status</th>
-                                        <th>Species</th>
-                                        <th>Subspecies</th>
-                                        <th>Gender</th>
+                                        <th className="th-species">Species</th>
+                                        <th className="th-subspecies">Subspecies</th>
+                                        <th className="th-gender">Gender</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -88,9 +88,9 @@ export default function Location_Overview() {
                                                     <td className="td-image"><img className="picture" src={item.image} alt="Not Found"/></td>
                                                     <td><Link to={"/character/" + item.id}>{item.name}</Link></td>
                                                     <td>{item.status}</td>
-                                                    <td>{item.species}</td>
-                                                    {(item.type === '') ? <td>None</td> : <td>{item.type}</td>}
-                                                    <td>{item.gender}</td>
+                                                    <td className="td-species">{item.species}</td>
+                                                    {(item.type === '') ? <td className="td-subspecies">None</td> : <td className="td-subspecies">{item.type}</td>}
+                                                    <td className="td-gender">{item.gender}</td>
                                                 </tr>
                                             )
                                         })

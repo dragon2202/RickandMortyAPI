@@ -34,16 +34,42 @@
 
 }
 
-@media screen and (max-width: 900px) {
-    .overview {
+@media screen and (max-width: 1050px) {
+    .character_overview {
         .nested-section {
-            flex-direction: column;
+            max-width: 100%;
+            box-sizing: border-box;
+            display: grid;
+            flex-direction: row;
+            justify-content: center;
+            margin: 0 auto;
+            padding-bottom: 20px;
+            row-gap: 12px;
             .text-center {
                 margin: 0 auto;
                 margin-bottom: 20px;
             }
-            .episode-table {
-                margin: 0 auto;
+            .episode-card {
+                margin-left: 0px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .character_overview {
+        .nested-section {
+            .text-center {
+                width: 350px;
+                .image {
+                    margin-top: 20px;
+                    max-width: 360px;
+                    margin: 0 auto;
+                }
+            }
+            .episode-card {
+                width: 350px;
+                height: 100%;
             }
         }
     }

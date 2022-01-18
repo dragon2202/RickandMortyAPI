@@ -28,3 +28,21 @@
         }
     }
 }
+
+@media screen and (max-width: 850px) {
+    .locations {
+        .location-table {
+            width: 600px;
+        }
+    }
+    
+}
+
+@media screen and (max-width: 600px) {
+    .locations {
+        .location-table {
+            width: 350px;
+        }
+    }
+    
+}

@@ -78,12 +78,7 @@ const CHARACTER_FIRSTSEEN = () => {
 
     if (totalCharacters === null) {
         return (
-            <main className="home">
-                <section>
-                    <h4 className="home-header">Home</h4>
-                    <p style={{ textAlign: 'center' }}>Loading...</p>
-                </section>
-            </main>
+            <p style={{ textAlign: 'center' }}>Loading...</p>
         )
     }
     return (

@@ -34,7 +34,7 @@
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
     .episode_overview {
         .nested-section {
             .text-center {
@@ -52,35 +52,37 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .episode_overview {
         .nested-section {
             .text-center {
-                width: 500px;
+                width: 400px;
             }
             .characters-card {
-                width: 500px;
+                width: 400px;
                 .table {
-                    .th-image{
+                    .picture{
+                        height: 100px;
+                    }
+                    .th-species{
                         display: none;
                     }
-                    .td-image{
+                    .th-subspecies{
+                        display: none;
+                    }
+                    .th-gender{
+                        display: none;
+                    }
+                    .td-species{
+                        display: none;
+                    }
+                    .td-subspecies{
+                        display: none;
+                    }
+                    .td-gender{
                         display: none;
                     }
                 }
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .episode_overview {
-        .nested-section {
-            .text-center {
-                width: 470px;
-            }
-            .characters-card {
-                width: 470px;
             }
         }
     }
