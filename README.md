@@ -1,3 +1,46 @@
+# Rick and Morty API
+This small project is me pulling from a public API for Rick and Morty (https://rickandmortyapi.com/) to display all characters, locations and episodes in the vast multiverse of Rick and Morty. I also implemented small mobile design which will change pages based of screen's width length.
+
+Link: https://ctang-rickandmortyapi.herokuapp.com/
+
+## Tech Used 
+### React(https://reactjs.org/)
+### React BootStrap(https://react-bootstrap.github.io/)
+### SASS(https://ant.design/) 
+
+## Questions
+I respond to emails within a day or so, so feel free to ask me any questions. Spam and unwanted harrassment will lead to a block.
+
+### Email: tcalvin9@gmail.com
+
+### Home Page
+This page displays six random characters from the show.
+<img src="/Screenshots/Home.png" width="100%">
+
+### Characters
+This page displays all characters from the show. It has search capabilities and pagination as shown below.
+<img src="/Screenshots/Characters.png" width="100%">
+
+### Character Overview
+This page displays a specific character's details and all episodes that the character has appeared in so far.
+<img src="/Screenshots/Character Overview.png" width="100%">
+
+### Locations
+This page displays all locations from the show. It has search capabilities and pagination as shown below.
+<img src="/Screenshots/Locations.png" width="100%">
+
+### Location Overview
+This page displays a specific location in the Rick and Morty Universe. It displays the current residents, characters that are current present in location. It does not display a character based on their origin, if they were originally from there. As current Rick and Morty are from a different universe for an example.
+<img src="/Screenshots/Location Overview.png" width="100%">
+
+### Episodes
+This page displays all episodes from the show. I did not implemnt a search because it's displayed in an ascending order based on episodes and there's a very few amount of episodes. The table displays 20 episodes, and each season is around 10 episodes. Using pagination you can roughly guess where each season is.
+<img src="/Screenshots/Episodes.png" width="100%">
+
+### Episode Overview
+This page displays a specific episode and all the characters in that episode.
+<img src="/Screenshots/Episode Overview.png" width="100%">
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
