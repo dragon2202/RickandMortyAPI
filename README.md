@@ -6,7 +6,7 @@ Link: https://ctang-rickandmortyapi.herokuapp.com/
 ## Tech Used 
 ### React(https://reactjs.org/)
 ### React BootStrap(https://react-bootstrap.github.io/)
-### SASS(https://ant.design/) 
+### SASS(https://sass-lang.com/) 
 
 ## Questions
 I respond to emails within a day or so, so feel free to ask me any questions. Spam and unwanted harrassment will lead to a block.
